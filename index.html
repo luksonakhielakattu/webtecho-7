@@ -1,0 +1,539 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Speed Wheels - Experiment 07</title>
+
+<!-- jQuery Library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f3f0ea;
+    margin: 0;
+    color: #222;
+}
+
+header, footer {
+    background: #15191f;
+    color: white;
+    text-align: center;
+    padding: 22px;
+}
+
+header h1 {
+    color: #ed2939;
+}
+
+h2 {
+    color: #e32636;
+}
+
+section {
+    background: white;
+    max-width: 900px;
+    margin: 25px auto;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px #0000000d;
+}
+
+input {
+    padding: 11px;
+    margin: 8px 0;
+    width: 100%;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+}
+
+input:focus {
+    outline: 2px solid #e32636;
+}
+
+button {
+    background: #15191f;
+    color: white;
+    padding: 11px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 8px 4px 8px 0;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #e32636;
+}
+
+.result {
+    background: #f1f3f5;
+    padding: 18px;
+    margin-top: 18px;
+    border-radius: 7px;
+    line-height: 1.9;
+}
+
+.products {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+}
+
+.product {
+    background: #f4f0ec;
+    padding: 18px;
+    border-radius: 8px;
+    border: 1px solid #eee;
+}
+
+.product h3 {
+    color: #d82030;
+}
+
+.product input {
+    width: 90px;
+}
+
+/* BIKE CUSTOMIZATION */
+
+#bike {
+    width: 220px;
+    height: 140px;
+    background: #e32636;
+    border-radius: 15px;
+    margin: 30px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 85px;
+    transition: 0.3s;
+    box-shadow: 0 5px 15px #00000020;
+}
+
+#bikeDetails {
+    background: #f3f0ea;
+    padding: 12px;
+    border-radius: 6px;
+    margin: 15px auto;
+    max-width: 400px;
+}
+
+.center {
+    text-align: center;
+}
+
+@media(max-width: 600px) {
+    .products {
+        grid-template-columns: 1fr;
+    }
+
+    section {
+        margin: 15px;
+    }
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+    <h1>SPEED WHEELS BIKE SHOWROOM</h1>
+
+    <p>Experiment 07 - Working with jQuery</p>
+
+</header>
+
+
+<!-- 1. BIKE BUDGET CALCULATOR -->
+
+<section>
+
+    <h2>1. Bike Purchase Budget Calculator</h2>
+
+    <p>Enter your budget and divide it into different bike purchase categories.</p>
+
+    <label>Total Budget (₹)</label>
+
+    <input type="number" id="budget" value="200000" min="1">
+
+    <div class="products">
+
+        <div>
+            <label>Bike Purchase (%)</label>
+            <input type="number" id="bikePurchase" value="65">
+        </div>
+
+        <div>
+            <label>Accessories (%)</label>
+            <input type="number" id="accessories" value="15">
+        </div>
+
+        <div>
+            <label>Insurance (%)</label>
+            <input type="number" id="insurance" value="10">
+        </div>
+
+        <div>
+            <label>Savings (%)</label>
+            <input type="number" id="savings" value="10">
+        </div>
+
+    </div>
+
+    <button id="calculateBudget">
+        Evaluate My Budget
+    </button>
+
+    <div class="result" id="budgetResult">
+        Your bike budget details will appear here.
+    </div>
+
+</section>
+
+
+<!-- 2. BIKE BOOKING CALCULATOR -->
+
+<section>
+
+    <h2>2. Bike Booking and Price Calculator</h2>
+
+    <p>Select the quantity of motorcycles to calculate your purchase bill.</p>
+
+    <div class="products">
+
+        <div class="product">
+
+            <h3>Royal Enfield Classic 350</h3>
+
+            <p>Sample Price: ₹1,95,000</p>
+
+            Quantity:
+
+            <input type="number" id="classic" value="0" min="0">
+
+        </div>
+
+
+        <div class="product">
+
+            <h3>KTM Duke 390</h3>
+
+            <p>Sample Price: ₹3,20,000</p>
+
+            Quantity:
+
+            <input type="number" id="duke" value="0" min="0">
+
+        </div>
+
+
+        <div class="product">
+
+            <h3>Yamaha R15 V4</h3>
+
+            <p>Sample Price: ₹1,85,000</p>
+
+            Quantity:
+
+            <input type="number" id="yamaha" value="0" min="0">
+
+        </div>
+
+
+        <div class="product">
+
+            <h3>Honda Activa 6G</h3>
+
+            <p>Sample Price: ₹80,000</p>
+
+            Quantity:
+
+            <input type="number" id="activa" value="0" min="0">
+
+        </div>
+
+    </div>
+
+    <button id="placeOrder">
+        Calculate Bike Bill
+    </button>
+
+    <div class="result" id="orderResult">
+        Your bike purchase bill will appear here.
+    </div>
+
+</section>
+
+
+<!-- 3. BIKE CUSTOMIZATION WORKSHOP -->
+
+<section class="center">
+
+    <h2>3. Speed Wheels Bike Customization</h2>
+
+    <p>Customize the appearance of your motorcycle using jQuery.</p>
+
+    <div id="bike">
+        🏍️
+    </div>
+
+    <div id="bikeDetails">
+        Your selected bike customization will appear here.
+    </div>
+
+    <button id="red">Red Theme</button>
+
+    <button id="blue">Blue Theme</button>
+
+    <button id="black">Black Theme</button>
+
+    <button id="tint">Change Background</button>
+
+    <button id="size">Change Size</button>
+
+    <button id="reset">Reset</button>
+
+</section>
+
+
+<footer>
+
+    <p>Speed Wheels Bike Showroom | Experiment 07</p>
+
+    <p>© 2026 All Rights Reserved</p>
+
+</footer>
+
+
+<script>
+
+$(document).ready(function() {
+
+    // 1. BIKE BUDGET CALCULATOR
+
+    $("#calculateBudget").click(function() {
+
+        let amount = Number($("#budget").val());
+
+        let b = Number($("#bikePurchase").val());
+
+        let a = Number($("#accessories").val());
+
+        let i = Number($("#insurance").val());
+
+        let s = Number($("#savings").val());
+
+        if (
+            amount <= 0 ||
+            b < 0 || a < 0 ||
+            i < 0 || s < 0
+        ) {
+
+            alert("Enter valid budget and percentages!");
+
+            return;
+
+        }
+
+        if (b + a + i + s !== 100) {
+
+            alert("The total percentage must be 100%!");
+
+            return;
+
+        }
+
+        $("#budgetResult").html(
+
+            "<h3>Bike Budget Distribution</h3>" +
+
+            "Bike Purchase: ₹" +
+            (amount * b / 100).toFixed(2) + "<br>" +
+
+            "Accessories: ₹" +
+            (amount * a / 100).toFixed(2) + "<br>" +
+
+            "Insurance: ₹" +
+            (amount * i / 100).toFixed(2) + "<br>" +
+
+            "Savings: ₹" +
+            (amount * s / 100).toFixed(2)
+
+        );
+
+    });
+
+
+    // 2. BIKE BOOKING AND PRICE CALCULATOR
+
+    $("#placeOrder").click(function() {
+
+        let c = Number($("#classic").val());
+
+        let d = Number($("#duke").val());
+
+        let y = Number($("#yamaha").val());
+
+        let a = Number($("#activa").val());
+
+        if ([c, d, y, a].some(q =>
+            q < 0 || !Number.isInteger(q)
+        )) {
+
+            alert("Enter valid bike quantities!");
+
+            return;
+
+        }
+
+        let classicTotal = c * 195000;
+
+        let dukeTotal = d * 320000;
+
+        let yamahaTotal = y * 185000;
+
+        let activaTotal = a * 80000;
+
+        let total = classicTotal +
+                    dukeTotal +
+                    yamahaTotal +
+                    activaTotal;
+
+        if (total === 0) {
+
+            alert("Please select at least one bike!");
+
+            return;
+
+        }
+
+        $("#orderResult").html(
+
+            "<h3>Bike Purchase Bill</h3>" +
+
+            "Royal Enfield Classic 350: ₹" +
+            classicTotal + "<br>" +
+
+            "KTM Duke 390: ₹" +
+            dukeTotal + "<br>" +
+
+            "Yamaha R15 V4: ₹" +
+            yamahaTotal + "<br>" +
+
+            "Honda Activa 6G: ₹" +
+            activaTotal +
+
+            "<hr><h3>Total Price: ₹" +
+            total.toLocaleString("en-IN") +
+            "</h3>"
+
+        );
+
+    });
+
+
+    // 3. BIKE CUSTOMIZATION
+
+    $("#red").click(function() {
+
+        $("#bike").css("background", "red");
+
+        $("#bikeDetails").text(
+            "Red Theme Selected"
+        );
+
+    });
+
+
+    $("#blue").click(function() {
+
+        $("#bike").css("background", "blue");
+
+        $("#bikeDetails").text(
+            "Blue Theme Selected"
+        );
+
+    });
+
+
+    $("#black").click(function() {
+
+        $("#bike").css("background", "black");
+
+        $("#bikeDetails").text(
+            "Black Theme Selected"
+        );
+
+    });
+
+
+    $("#tint").click(function() {
+
+        $("#bike").css("background", "#ffcc66");
+
+        $("#bikeDetails").text(
+            "Custom Background Selected"
+        );
+
+    });
+
+
+    $("#size").click(function() {
+
+        $("#bike").css({
+
+            "width": "280px",
+
+            "height": "180px",
+
+            "font-size": "110px"
+
+        });
+
+        $("#bikeDetails").text(
+            "Bike Display Size Increased"
+        );
+
+    });
+
+
+    $("#reset").click(function() {
+
+        $("#bike").css({
+
+            "background": "#e32636",
+
+            "width": "220px",
+
+            "height": "140px",
+
+            "font-size": "85px"
+
+        });
+
+        $("#bikeDetails").text(
+            "Bike Customization Reset Successfully"
+        );
+
+    });
+
+});
+
+</script>
+
+</body>
+</html>
